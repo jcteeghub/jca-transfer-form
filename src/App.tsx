@@ -1377,14 +1377,13 @@ export default function App() {
             <div
               style={{
                 fontSize: 12,
-                color: "#fff5ca",
-                opacity: 0.85,
+                color: "#555",
                 marginBottom: 10,
                 lineHeight: 1.5,
-                background: "rgba(255,245,202,0.08)",
+                background: "#f9fafb",
                 padding: 12,
                 borderRadius: 6,
-                border: "1px solid rgba(255,245,202,0.2)",
+                border: "1px solid #ddd",
               }}
             >
               Please write a brief letter addressed to your child's current
