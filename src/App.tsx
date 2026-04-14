@@ -132,9 +132,9 @@ const inputError: CSSProperties = {
   border: "2px solid red",
 };
 const sectionBox: CSSProperties = {
-  border: "1px solid #d4a84a",
+  border: "1px solid #751413",
   borderRadius: 6,
-  backgroundColor: "#fff5ca",
+  backgroundColor: "#fff",
   color: "#333",
   padding: 16,
   marginBottom: 16,
@@ -155,7 +155,7 @@ const boldLabel: CSSProperties = {
 };
 const reasonSection: CSSProperties = {
   padding: 16,
-  borderBottom: "1px solid #7a2220",
+  borderBottom: "1px solid #ddd",
 };
 const subItems: CSSProperties = { marginLeft: 24, marginTop: 8 };
 
@@ -353,23 +353,23 @@ export default function App() {
     return (
       <>
         <style>{responsiveCSS}</style>
-        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #5a1010", borderRadius: 12, background: "#8a2a28", color: "#fff5ca", boxShadow: "0 2px 16px rgba(0,0,0,0.3)" }}>
+        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #751413", borderRadius: 12, background: "#fff", color: "#333", boxShadow: "0 2px 16px rgba(0,0,0,0.3)" }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
-          <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px", color: "#fff5ca" }}>Application Submitted Successfully</h1>
-          <p style={{ fontSize: 14, color: "#fff5ca", opacity: 0.85, lineHeight: 1.6, margin: "0 0 20px" }}>
+          <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px", color: "#751413" }}>Application Submitted Successfully</h1>
+          <p style={{ fontSize: 14, color: "#555", lineHeight: 1.6, margin: "0 0 20px" }}>
             Thank you for completing your application. Your submission has been received and is now being processed.
           </p>
-          <div style={{ background: "rgba(255,245,202,0.15)", border: "2px solid #fff5ca", borderRadius: 8, padding: "16px 24px", marginBottom: 20 }}>
-            <div style={{ fontSize: 12, color: "#fff5ca", fontWeight: 600, marginBottom: 4 }}>YOUR REFERENCE NUMBER</div>
-            <div style={{ fontSize: 32, fontWeight: 800, color: "#fff5ca", letterSpacing: 2 }}>{refNumber}</div>
+          <div style={{ background: "#eff6ff", border: "2px solid #2563eb", borderRadius: 8, padding: "16px 24px", marginBottom: 20 }}>
+            <div style={{ fontSize: 12, color: "#1e40af", fontWeight: 600, marginBottom: 4 }}>YOUR REFERENCE NUMBER</div>
+            <div style={{ fontSize: 32, fontWeight: 800, color: "#1e3a8a", letterSpacing: 2 }}>{refNumber}</div>
           </div>
-          <div style={{ background: "rgba(255,245,202,0.12)", border: "1px solid rgba(255,245,202,0.4)", borderRadius: 8, padding: 14, marginBottom: 20 }}>
-            <strong style={{ color: "#fff5ca", fontSize: 13 }}>⚠ Important:</strong>
-            <p style={{ fontSize: 13, color: "#fff5ca", opacity: 0.9, margin: "4px 0 0", lineHeight: 1.5 }}>
+          <div style={{ background: "#fef3c7", border: "1px solid #fde68a", borderRadius: 8, padding: 14, marginBottom: 20 }}>
+            <strong style={{ color: "#92400e", fontSize: 13 }}>⚠ Important:</strong>
+            <p style={{ fontSize: 13, color: "#78350f", margin: "4px 0 0", lineHeight: 1.5 }}>
               Please take note of your reference number. Save it or take a screenshot now. This number <strong>will not be shown again</strong> and will be needed when you follow up on your application.
             </p>
           </div>
-          <p style={{ fontSize: 13, color: "#fff5ca", opacity: 0.7, margin: 0 }}>
+          <p style={{ fontSize: 13, color: "#666", margin: 0 }}>
             You may close this page. If you have any concerns, please contact the school office and provide your reference number.
           </p>
         </div>
@@ -387,17 +387,17 @@ export default function App() {
           padding: 24,
           fontFamily: "sans-serif",
           fontSize: 14,
-          background: "linear-gradient(180deg, #8a2a28 0%, #751413 40%, #751413 100%)",
-          color: "#fff5ca",
+          background: "#f8ca8f",
+          color: "#751413",
           minHeight: "100vh",
         }}
       >
         {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, color: "#fff5ca" }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, color: "#751413" }}>
             Jubilee Christian Academy
           </h1>
-          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0, color: "#fff5ca" }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0, color: "#751413" }}>
             Intent to Transfer Form
           </h2>
         </div>
@@ -1458,7 +1458,7 @@ export default function App() {
               width: "100%",
               marginTop: 16,
               backgroundColor: "#751413",
-              color: "#fff5ca",
+              color: "#fff",
               fontWeight: 600,
               padding: "12px 0",
               borderRadius: 6,
