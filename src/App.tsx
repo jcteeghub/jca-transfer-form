@@ -132,9 +132,9 @@ const inputError: CSSProperties = {
   border: "2px solid red",
 };
 const sectionBox: CSSProperties = {
-  border: "1px solid #5a1010",
+  border: "1px solid #7a2220",
   borderRadius: 6,
-  backgroundColor: "rgba(255,245,202,0.1)",
+  backgroundColor: "#9c3533",
   padding: 16,
   marginBottom: 16,
 };
@@ -153,7 +153,7 @@ const boldLabel: CSSProperties = {
 };
 const reasonSection: CSSProperties = {
   padding: 16,
-  borderBottom: "1px solid #5a1010",
+  borderBottom: "1px solid #7a2220",
 };
 const subItems: CSSProperties = { marginLeft: 24, marginTop: 8 };
 
