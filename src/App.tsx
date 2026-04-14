@@ -132,7 +132,7 @@ const inputError: CSSProperties = {
   border: "2px solid red",
 };
 const sectionBox: CSSProperties = {
-  border: "2px solid #751413",
+  border: "1px solid #751413",
   borderRadius: 6,
   backgroundColor: "#fff",
   color: "#333",
@@ -388,16 +388,16 @@ export default function App() {
           fontFamily: "sans-serif",
           fontSize: 14,
           background: "#fff5ca",
-          color: "#4a0d0c",
+          color: "#5f110e",
           minHeight: "100vh",
         }}
       >
         {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, color: "#4a0d0c", textShadow: "0 1px 3px rgba(0,0,0,0.15)" }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, color: "#5f110e", textShadow: "0 1px 3px rgba(0,0,0,0.15)" }}>
             Jubilee Christian Academy
           </h1>
-          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0, color: "#4a0d0c", textShadow: "0 1px 3px rgba(0,0,0,0.15)" }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0, color: "#5f110e", textShadow: "0 1px 3px rgba(0,0,0,0.15)" }}>
             Intent to Transfer Form
           </h2>
         </div>
