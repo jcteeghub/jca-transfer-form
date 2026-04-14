@@ -579,7 +579,7 @@ export default function App() {
               <input
                 type="email"
                 style={errors.email ? inputError : input}
-                placeholder="parent@email.com"
+                placeholder="student@student.jca.edu.ph"
                 value={formData.email || ""}
                 onChange={(e) => handleChange("email", e.target.value)}
               />
@@ -1419,18 +1419,19 @@ export default function App() {
             ...sectionBox,
             backgroundColor: "#eff6ff",
             padding: 20,
+            color: "#333",
           }}
         >
           <div className="signature-grid">
             <div>
-              <label style={{ fontWeight: 600 }}>
+              <label style={{ fontWeight: 600, color: "#333" }}>
                 Signature of Parent / Guardian:{" "}
                 <span style={{ color: "red" }}>*</span>
               </label>
               <SignaturePad />
             </div>
             <div>
-              <label style={{ fontWeight: 600 }}>
+              <label style={{ fontWeight: 600, color: "#333" }}>
                 Date: <span style={{ color: "red" }}>*</span>
               </label>
               <input type="date" style={{ ...input, marginTop: 8 }} />
@@ -1443,6 +1444,7 @@ export default function App() {
               fontSize: 13,
               fontStyle: "italic",
               marginTop: 16,
+              color: "#555",
             }}
           >
             By signing above, I confirm that the information provided is true
