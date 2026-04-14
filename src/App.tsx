@@ -9,7 +9,8 @@ import React, { useState, useRef, useEffect, type CSSProperties } from "react";
 
 // ── Responsive CSS ──
 const responsiveCSS = `
-  * { box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
   .form-row {
     display: flex;
@@ -353,7 +354,7 @@ export default function App() {
     return (
       <>
         <style>{responsiveCSS}</style>
-        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #751413", borderRadius: 12, background: "#fff", color: "#333", boxShadow: "0 2px 16px rgba(0,0,0,0.3)" }}>
+        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "'Montserrat', sans-serif", textAlign: "center", border: "1px solid #751413", borderRadius: 12, background: "#fff", color: "#333", boxShadow: "0 2px 16px rgba(0,0,0,0.3)" }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
           <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px", color: "#751413" }}>Application Submitted Successfully</h1>
           <p style={{ fontSize: 14, color: "#555", lineHeight: 1.6, margin: "0 0 20px" }}>
@@ -385,7 +386,7 @@ export default function App() {
           maxWidth: 900,
           margin: "0 auto",
           padding: 24,
-          fontFamily: "sans-serif",
+          fontFamily: "'Montserrat', sans-serif",
           fontSize: 14,
           background: "#fff5ca",
           color: "#5f110e",
