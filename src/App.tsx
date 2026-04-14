@@ -353,7 +353,7 @@ export default function App() {
     return (
       <>
         <style>{responsiveCSS}</style>
-        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #3a0a09", borderRadius: 12, background: "#741513", color: "#fff5ca", boxShadow: "0 2px 16px rgba(0,0,0,0.3)" }}>
+        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #5a1010", borderRadius: 12, background: "#8a2a28", color: "#fff5ca", boxShadow: "0 2px 16px rgba(0,0,0,0.3)" }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
           <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px", color: "#fff5ca" }}>Application Submitted Successfully</h1>
           <p style={{ fontSize: 14, color: "#fff5ca", opacity: 0.85, lineHeight: 1.6, margin: "0 0 20px" }}>
@@ -387,7 +387,7 @@ export default function App() {
           padding: 24,
           fontFamily: "sans-serif",
           fontSize: 14,
-          background: "#741513",
+          background: "linear-gradient(180deg, #8a2a28 0%, #751413 40%, #751413 100%)",
           color: "#fff5ca",
           minHeight: "100vh",
         }}
