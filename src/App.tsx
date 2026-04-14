@@ -5,7 +5,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzb21hbXRwc2pxbGprcmdydGZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNjg0NTMsImV4cCI6MjA5MDk0NDQ1M30.s0SpVVEYjcBPCJRFiwDGwvZwUUCBBEZx8bGKQw4utTQ"
 );
 
-import React, { useState, useRef, useEffect, type CSSProperties } from "react";
+import React, { useState, useRef, useEffect, CSSProperties } from "react";
 
 // ── Responsive CSS ──
 const responsiveCSS = `
@@ -170,7 +170,7 @@ export default function App() {
   });
 
   const [errors, setErrors] = useState<Record<string, boolean>>({});
-  const [_submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [done, setDone] = useState(false);
   const [refNumber, setRefNumber] = useState("");
 
@@ -210,6 +210,7 @@ export default function App() {
       newErrors.grade = true;
     if (!formData.email?.trim() || !formData.email.includes("@"))
       newErrors.email = true;
+    if (!formData.phone?.trim()) newErrors.phone = true;
     if (!formData.application_type || formData.application_type === "Select")
       newErrors.application_type = true;
 
@@ -230,7 +231,7 @@ export default function App() {
     // Transfer/LOA → support departments
     // Shift → Admissions + Academic Affairs (after principal)
     if (!isShiftType) {
-      departments.push("Guidance", "Finance", "PAGS", "Library");
+      departments.push("Guidance", "Finance", "PAGS", "ERC", "Clinic");
     } else {
       departments.push("Admissions", "Academic Affairs");
     }
@@ -350,9 +351,9 @@ export default function App() {
     return (
       <>
         <style>{responsiveCSS}</style>
-        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #ddd", borderRadius: 12, background: "#fff", boxShadow: "0 2px 16px rgba(0,0,0,0.08)" }}>
+        <div style={{ maxWidth: 600, margin: "80px auto", padding: 32, fontFamily: "sans-serif", textAlign: "center", border: "1px solid #ddd", borderRadius: 12, background: "#fff5ca", boxShadow: "0 2px 16px rgba(0,0,0,0.08)" }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
-          <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px", color: "#065f46" }}>Application Submitted Successfully</h1>
+          <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px", color: "#741513" }}>Application Submitted Successfully</h1>
           <p style={{ fontSize: 14, color: "#555", lineHeight: 1.6, margin: "0 0 20px" }}>
             Thank you for completing your application. Your submission has been received and is now being processed.
           </p>
@@ -384,15 +385,17 @@ export default function App() {
           padding: 24,
           fontFamily: "sans-serif",
           fontSize: 14,
+          background: "#fff5ca",
+          minHeight: "100vh",
         }}
       >
         {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, color: "#741513" }}>
             Jubilee Christian Academy
           </h1>
-          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>
-            Intent to Transfer
+          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0, color: "#741513" }}>
+            Intent to Transfer Form
           </h2>
         </div>
 
@@ -430,10 +433,10 @@ export default function App() {
             />
           </div>
 
-          {/* Name */}
+          {/* Student's Name */}
           <div className="form-row-top">
             <label className="form-label">
-              Name: <span className="required-star">*</span>
+              Student's Name: <span className="required-star">*</span>
             </label>
             <div style={{ flex: 1 }}>
               <div className="name-grid">
@@ -581,6 +584,25 @@ export default function App() {
               />
               {errors.email && (
                 <div className="error-msg">Email address is required</div>
+              )}
+            </div>
+          </div>
+
+          {/* Phone Number */}
+          <div className="form-row">
+            <label className="form-label">
+              Phone Number: <span className="required-star">*</span>
+            </label>
+            <div style={{ flex: 1 }}>
+              <input
+                type="tel"
+                style={errors.phone ? inputError : input}
+                placeholder="09XX XXX XXXX"
+                value={formData.phone || ""}
+                onChange={(e) => handleChange("phone", e.target.value)}
+              />
+              {errors.phone && (
+                <div className="error-msg">Phone number is required</div>
               )}
             </div>
           </div>
@@ -1430,7 +1452,7 @@ export default function App() {
             style={{
               width: "100%",
               marginTop: 16,
-              backgroundColor: "#2563eb",
+              backgroundColor: "#741513",
               color: "white",
               fontWeight: 600,
               padding: "12px 0",
