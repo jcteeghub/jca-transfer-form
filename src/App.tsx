@@ -132,9 +132,10 @@ const inputError: CSSProperties = {
   border: "2px solid red",
 };
 const sectionBox: CSSProperties = {
-  border: "1px solid #7a2220",
+  border: "1px solid #d4a84a",
   borderRadius: 6,
-  backgroundColor: "#9c3533",
+  backgroundColor: "#fff5ca",
+  color: "#333",
   padding: 16,
   marginBottom: 16,
 };
@@ -150,6 +151,7 @@ const boldLabel: CSSProperties = {
   alignItems: "center",
   gap: 6,
   marginBottom: 8,
+  color: "#333",
 };
 const reasonSection: CSSProperties = {
   padding: 16,
@@ -1456,8 +1458,8 @@ export default function App() {
             style={{
               width: "100%",
               marginTop: 16,
-              backgroundColor: "#fff5ca",
-              color: "#741513",
+              backgroundColor: "#751413",
+              color: "#fff5ca",
               fontWeight: 600,
               padding: "12px 0",
               borderRadius: 6,
