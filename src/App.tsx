@@ -5,7 +5,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzb21hbXRwc2pxbGprcmdydGZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNjg0NTMsImV4cCI6MjA5MDk0NDQ1M30.s0SpVVEYjcBPCJRFiwDGwvZwUUCBBEZx8bGKQw4utTQ"
 );
 
-import React, { useState, useRef, useEffect, CSSProperties } from "react";
+import React, { useState, useRef, useEffect, type CSSProperties } from "react";
 
 // ── Responsive CSS ──
 const responsiveCSS = `
