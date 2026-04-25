@@ -1,9 +1,18 @@
 import { createClient } from "@supabase/supabase-js";
+import emailjs from "@emailjs/browser";
 
 const supabase = createClient(
   "https://dsomamtpsjqljkrgrtfs.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzb21hbXRwc2pxbGprcmdydGZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNjg0NTMsImV4cCI6MjA5MDk0NDQ1M30.s0SpVVEYjcBPCJRFiwDGwvZwUUCBBEZx8bGKQw4utTQ"
 );
+
+// ── EmailJS Configuration ──
+// Set up at https://www.emailjs.com — connect registrar & admissions Gmail accounts
+// Replace the placeholders below with your actual IDs from the EmailJS dashboard
+const EMAILJS_PUBLIC_KEY    = "YOUR_PUBLIC_KEY";          // Account → API Keys
+const EMAILJS_SERVICE_REG   = "YOUR_SERVICE_ID_REGISTRAR"; // Email Services → registrar@jca.edu.ph service
+const EMAILJS_SERVICE_ADM   = "YOUR_SERVICE_ID_ADMISSIONS"; // Email Services → admissions@jca.edu.ph service
+const EMAILJS_TEMPLATE      = "YOUR_TEMPLATE_ID";          // Email Templates → shared template ID
 
 import React, { useState, useRef, useEffect, type CSSProperties } from "react";
 
@@ -321,23 +330,46 @@ export default function App() {
 
       if (clrError) throw clrError;
 
-      // Email all concerned departments
+      // Email all concerned departments — automatically via EmailJS
       try {
         const { data: deptUsers } = await supabase
           .from("department_users")
           .select("email, department")
           .in("department", departments);
-        const emails = (deptUsers || []).map((u) => u.email);
+        const emails = (deptUsers || []).map((u: any) => u.email);
         if (emails.length > 0) {
           const studentName = `${formData.first_name} ${formData.last_name}`;
           const grade = formData.grade || "";
           const appType = formData.application_type || "";
-          const subject = encodeURIComponent(`Request for Clearance – ${studentName}`);
-          const body = encodeURIComponent(
-            `Please be informed that ${studentName} of ${grade} has submitted an application for ${appType}.\n\nMay we kindly request your department to review the student's records and confirm clearance.\n\nThank you.`
-          );
-          const mailto = `mailto:${emails.join(",")}?subject=${subject}&body=${body}`;
-          window.open(mailto, "_blank");
+          const isShift = appType === "Shift to Jubilee Homeschool" || appType === "Shift to Jubilee In-school";
+
+          // Choose sender: Registrar for Transfer/LOA, Admissions for Shift
+          const serviceId = isShift ? EMAILJS_SERVICE_ADM : EMAILJS_SERVICE_REG;
+          const senderOffice = isShift ? "Admissions Office" : "Registrar's Office";
+
+          const templateParams = {
+            to_emails:    emails.join(","),
+            student_name: studentName,
+            grade:        grade,
+            app_type:     appType,
+            ref_number:   ref,
+            sender_office: senderOffice,
+            message:
+              `Please be informed that ${studentName} of ${grade} has submitted an application for ${appType}.\n\n` +
+              `Reference #: ${ref}\n\n` +
+              `May we kindly request your department to review the student's records and confirm clearance at the earliest convenience.\n\n` +
+              `Thank you.\n\n${senderOffice}\nJubilee Christian Academy`,
+          };
+
+          // If EmailJS is configured, send automatically; otherwise fall back to mailto
+          if (EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+            await emailjs.send(serviceId, EMAILJS_TEMPLATE, templateParams, EMAILJS_PUBLIC_KEY);
+          } else {
+            // Fallback: open mailto (until EmailJS is configured)
+            const subject = encodeURIComponent(`Request for Clearance – ${studentName} (Ref: ${ref})`);
+            const body = encodeURIComponent(templateParams.message);
+            window.open(`mailto:${emails.join(",")}?subject=${subject}&body=${body}`, "_blank");
+          }
         }
       } catch (e) {
         // Non-blocking — form was already submitted successfully
