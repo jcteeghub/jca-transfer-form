@@ -177,6 +177,7 @@ export default function App() {
   const [submitted, setSubmitted] = useState(false);
   const [done, setDone] = useState(false);
   const [refNumber, setRefNumber] = useState("");
+  const signatureRef = useRef<{ getDataURL: () => string | null }>(null);
 
   const handleChange = (name: string, value: any) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -295,7 +296,8 @@ export default function App() {
 
     try {
       const ref = generateRefNumber();
-      const dataWithRef = { ...formData, ref_number: ref };
+      const signatureData = signatureRef.current?.getDataURL() || null;
+      const dataWithRef = { ...formData, ref_number: ref, signature: signatureData };
 
       const { data: submission, error: subError } = await supabase
         .from("submissions")
@@ -1433,7 +1435,7 @@ export default function App() {
                 Signature of Parent / Guardian:{" "}
                 <span style={{ color: "red" }}>*</span>
               </label>
-              <SignaturePad />
+              <SignaturePad ref={signatureRef} />
             </div>
             <div>
               <label style={{ fontWeight: 600, color: "#333" }}>
@@ -1479,9 +1481,23 @@ export default function App() {
   );
 }
 
-function SignaturePad() {
+const SignaturePad = React.forwardRef<{ getDataURL: () => string | null }, object>(
+  function SignaturePad(_props, ref) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [drawing, setDrawing] = useState(false);
+
+  React.useImperativeHandle(ref, () => ({
+    getDataURL: () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return null;
+      // Return null if canvas is blank
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return null;
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const hasContent = Array.from(data).some((v, i) => i % 4 === 3 && v > 0);
+      return hasContent ? canvas.toDataURL("image/png") : null;
+    },
+  }));
 
   const getPos = (
     e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>
@@ -1582,4 +1598,5 @@ function SignaturePad() {
       </button>
     </div>
   );
-}
+});
+
