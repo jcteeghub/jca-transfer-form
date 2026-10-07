@@ -4,6 +4,9 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzb21hbXRwc2pxbGprcmdydGZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNjg0NTMsImV4cCI6MjA5MDk0NDQ1M30.s0SpVVEYjcBPCJRFiwDGwvZwUUCBBEZx8bGKQw4utTQ"
 );
 
+// ── SCHOOL YEAR: change this one line each new school year ──
+const SCHOOL_YEAR = "2026-2027";
+
 const EDGE_FUNCTION_URL = "https://dsomamtpsjqljkrgrtfs.supabase.co/functions/v1/send-notification";
 
 import React, { useState, useRef, useEffect, type CSSProperties } from "react";
@@ -164,7 +167,7 @@ const subItems: CSSProperties = { marginLeft: 24, marginTop: 8 };
 export default function App() {
   const [formData, setFormData] = useState<Record<string, any>>({
     reasons: [],
-    school_year: "2025-2026",
+    school_year: SCHOOL_YEAR,
     date_filed: "",
     last_name: "",
     first_name: "",
@@ -393,7 +396,7 @@ export default function App() {
           padding: 24,
           fontFamily: "'Montserrat', sans-serif",
           fontSize: 14,
-          background: "#fff5ca",
+          background: "#fbedd3",
           color: "#5f110e",
           minHeight: "100vh",
         }}
@@ -436,7 +439,7 @@ export default function App() {
           <div className="form-row">
             <label className="form-label">School Year:</label>
             <input
-              value="2025-2026"
+              value={SCHOOL_YEAR}
               readOnly
               style={{ ...input, maxWidth: 180, backgroundColor: "#eee" }}
             />
